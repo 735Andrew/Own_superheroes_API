@@ -1,10 +1,10 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from config import SQLITE_DATABASE_URL
+from config import POSTGRESQL_DATABASE_URL
 
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = SQLITE_DATABASE_URL
+app.config["SQLALCHEMY_DATABASE_URI"] = POSTGRESQL_DATABASE_URL
 
 db = SQLAlchemy(app)
 

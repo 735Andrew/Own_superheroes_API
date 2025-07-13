@@ -61,13 +61,13 @@ def explore_heroes() -> Tuple[str:Dict]:
                 else:
                     if 0 <= int(value) <= 100: # Preventing SQL Injection
                         query1 = sa.select(Hero).where(
-                            sa.text(f"heroes.{key} >= {value}")
+                            sa.text(f"heroes.{key} > {value}")
                         )
                         query2 = sa.select(Hero).where(
-                            sa.text(f"heroes.{key} <= {value}")
+                            sa.text(f"heroes.{key} < {value}")
                         )
                         query3 = sa.select(Hero).where(
-                            sa.text(f"heroes.{key} == {value}")
+                            sa.text(f"heroes.{key} = {value}")
                         )
 
                         output_structure[key] = {
