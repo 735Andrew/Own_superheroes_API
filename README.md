@@ -9,10 +9,10 @@
 </ul>
 </div>
 <br>
-:white_square_button:<b>Tech Stack</b>:white_square_button:<br>
+:eight_spoked_asterisk:<b>Tech Stack</b>:eight_spoked_asterisk:<br>
 Flask, Flask-SQLAlchemy, PostgreSQL, Docker, Docker-Compose, Pytest
 <br><br>
-:black_square_button:<b>Essential dependencies</b>:black_square_button:<br>
+:eight_pointed_black_star:<b>Essential dependencies</b>:eight_pointed_black_star:<br>
 Python 3.10+, Docker 28+ 
 <hr> 
 <div>
@@ -81,7 +81,7 @@ Response example:
 ```
 <br>
 
-- Classify your superheroes `GET http://127.0.0.1:5000/hero?power=50`
+- Classify your superheroes by abilities `GET http://127.0.0.1:5000/hero?power=50`
 
 
 Response example:
