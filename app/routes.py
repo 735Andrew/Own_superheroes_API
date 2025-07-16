@@ -57,9 +57,14 @@ def explore_heroes() -> Tuple[str:Dict]:
             if key in ("name", "intelligence", "strength", "speed", "power"):
                 if key == "name":
                     hero = db.session.scalar(sa.select(Hero).where(Hero.name == value))
-                    return hero.to_dict(), 200, {"Content-Type": "application/json"}
+                    if hero is not None:
+                        return hero.to_dict(), 200, {"Content-Type": "application/json"}
+                    else:
+                        raise ValueError(
+                            f"There is no hero with name '{value}' in your collection of superheroes."
+                        )
                 else:
-                    if 0 <= int(value) <= 100: # Preventing SQL Injection
+                    if 0 <= int(value) <= 100:  # Preventing SQL Injection
                         query1 = sa.select(Hero).where(
                             sa.text(f"heroes.{key} > {value}")
                         )
@@ -72,16 +77,16 @@ def explore_heroes() -> Tuple[str:Dict]:
 
                         output_structure[key] = {
                             f"Heroes with an ability level higher than {value}": [
-                                hero.to_dict() for hero in
-                                db.session.scalars(query1).fetchall()
+                                hero.to_dict()
+                                for hero in db.session.scalars(query1).fetchall()
                             ],
                             f"Heroes with an ability level lower than {value}": [
-                                hero.to_dict() for hero in
-                                db.session.scalars(query2).fetchall()
+                                hero.to_dict()
+                                for hero in db.session.scalars(query2).fetchall()
                             ],
                             f"Heroes with an ability level {value}": [
-                                hero.to_dict() for hero in
-                                db.session.scalars(query3).fetchall()
+                                hero.to_dict()
+                                for hero in db.session.scalars(query3).fetchall()
                             ],
                         }
                     else:
